@@ -1,7 +1,7 @@
 import React from "react";
 const NewLocation =()=>{
     return ( 
-        <h1>Location Page</h1>  
+        <h1>New Location Page</h1>  
     )
 };
 
