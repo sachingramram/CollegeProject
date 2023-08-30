@@ -2,7 +2,7 @@
  import {BrowserRouter as Router, Route,Redirect,Switch} from "react-router-dom";
 import Users from "./users/pages/Users";
 import NewLocation from "./locations/pages/NewLocation";
-import MainNavigation from "./common/components/Navigation/MainNavigation";
+import MainNavigation from "./common//Navigation/MainNavigation";
  const App =() =>{
     return ( <Router>
                <Switch>

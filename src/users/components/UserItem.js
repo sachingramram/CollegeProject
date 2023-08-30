@@ -1,6 +1,6 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import "./UsersItem.css";
+import "./UserItem.css";
 
 const UserList=(props)=>{
     return(
@@ -12,8 +12,8 @@ const UserList=(props)=>{
                 </div>
                 <div className="useritem-infor">
                     <h2>{props.name}</h2>
-                    <h3>{prop.locationcount}
-                    {props.location===1 ? "location":"locarions"}
+                    <h3>{props.locationcount}
+                    {props.location===1 ? "location":"locations"}
                     </h3>
                 </div>
             </div>
@@ -21,4 +21,4 @@ const UserList=(props)=>{
     )
 }
 
-export default UserItem;
+export default UserList;

@@ -1,6 +1,6 @@
 import React from "react";
 import UserItem from "./UserItem";
-import "./UsersList.css";
+import "./UserList.css";
 
 const UserList=(props)=>{
  return (
