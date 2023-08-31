@@ -11,7 +11,7 @@ const MainNavigation=(props)=>{
         <Link to ="/">PicPot</Link>
      </h1>
      <nav>
-
+         <NavLinks/>
      </nav>
     </MainHeader>);
 };
