@@ -16,9 +16,7 @@ const Users =()=>{
             numberoflocations: 1,
         },
     ];
-    return  <UserList items={ALL_USERS} />;
-    
-          
+    return  <UserList items={ALL_USERS} />;       
 };
 
 export default Users;

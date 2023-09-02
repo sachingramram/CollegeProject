@@ -1,19 +1,20 @@
  import React from "react";
  import {BrowserRouter as Router, Route,Redirect,Switch} from "react-router-dom";
-import Users from "./users/pages/Users";
-import NewLocation from "./locations/pages/NewLocation";
-import MainNavigation from "./common/components/Navigation/MainNavigation";
-// import UserLocations from "./locations/pages/UserLocations";
+ import Users from "./users/pages/Users";
+ import NewLocation from "./locations/pages/NewLocation";
+ import MainNavigation from "./common/components/Navigation/MainNavigation";
+ import UserLocations from "./locations/pages/UserLocations";
  const App =() =>{
-    return ( <Router>
+    return ( 
+             <Router>
                <MainNavigation/>
                <main>
                <Switch>
              <Route path ="/" exact>
                 <Users />
              </Route>
-             <Route>
-
+             <Route path="/:userid/locations">
+               <UserLocations/>
              </Route>
              <Route path="/locations/new" exact>
               <NewLocation/>
