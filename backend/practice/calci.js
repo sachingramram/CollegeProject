@@ -2,9 +2,10 @@ const express= require("express");
 const app=express();
 
 app.use(express.urlencoded({extended:true})); //this is the middleware to read from the data
+app .use(express.static(`${__dirname}`));
+
 app.get("/", (req,res)=>{
     res.sendFile(`${__dirname}/calci.html`);
-
 });
 app.post("/", (req,res)=>{
     const n1=Number(req.body.num1);
