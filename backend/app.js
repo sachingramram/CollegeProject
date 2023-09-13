@@ -1,5 +1,5 @@
 const express = require("express");
-
+const mongoose=require('mongoose');
 const MyError = require("./model/error");
 const location_route = require("./routes/locations_route");
 const user_route = require("./routes/users_route");
@@ -27,6 +27,19 @@ app.use((error, req, res, next) => {
   });
 });
 
-app.listen(5000, () => {
-  console.log("server running @ 5000");
+mongoose
+.connect("mongodb+srv://picpotadmin:6uMvqjpnrGcz4vgW@cluster0.rl7sh7f.mongodb.net/PicturePot?retryWrites=true&w=majority"
+).then(()=>{
+  app.listen(5000, () => {
+    console.log("server running @ 5000");
+  });
+})
+
+.catch((error)=>{
+
+  console.log(error);
 });
+
+
+
+ 

@@ -1,5 +1,5 @@
 const MyError = require("../model/error");
-
+const Location = require("../model/location");
 let USER_LOCATIONS = [
   {
     id: "loc1",
@@ -7,7 +7,7 @@ let USER_LOCATIONS = [
     desc: "The Red Fort or Lal Qila (Hindustani: [lal qila]) is a historic fort in the Old Delhi neighbourhood of Delhi, India, ",
     pic: "https://assets-news.housing.com/news/wp-content/uploads/2021/07/20184714/All-about-the-Delhi-Red-Fort-or-Lal-Kila-FB-1200x700-compressed-2-686x400.jpg",
     address: "W82F+4C, Adarsh Meena Colony, Dausa, Rajasthan 303303",
-    userid: "u1",
+    userid: "u1"
   },
   {
     id: "loc2",
@@ -51,10 +51,24 @@ exports.getLocationByUserId = (req, res, next) => {
   res.status(200).json({ result: "success", message: locations });
 };
 
-exports.createNewLocation = (req, res, next) => {
+exports.createNewLocation = async (req, res, next) => {
   const { title, desc, address, userid } = req.body;
-  const newlocation = { title, desc, address, userid };
-  USER_LOCATIONS.push(newlocation);
+  const newlocation=new Location({
+    title,
+    desc,
+    pic :'https://picsum.photos/200',
+    address,
+    userid
+
+  });
+  try{
+
+    await newlocation.save();
+  }catch(err){
+    return next(new MyError("Database error: Cannot add location", 500))
+  }
+  // const newlocation = { title, desc, address, userid };
+  // USER_LOCATIONS.push(newlocation);
 
   res.status(201).json({ result: "success", message: newlocation });
 };
