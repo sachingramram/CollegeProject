@@ -12,9 +12,10 @@ const UserItem=(props)=>{
                 </div>
                 <div className="useritem-infor">
                     <h2>{props.name}</h2>
-                    <h3>{props.locationcount}
-                    {props.locationcount ===1 ? "location":"locations"}
-                    </h3>
+                    {/* <h3>
+                        {props.locationcount}
+                    {props.locationcount === 1 ? "location" : "locations"}
+                    </h3> */}
                 </div>
                 </Link>
             </div>
