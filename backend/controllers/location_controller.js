@@ -26,46 +26,61 @@ let USER_LOCATIONS = [
       "Jatayu Nature Park Rd, Jatayu Junction, Chadayamangalam, Kerala 691534",
     userid: "u2",
   },
-];
+]; 
 
-exports.getLocationByLocId = (req, res, next) => {
+exports.getLocationByLocId = async(req, res, next) => {
   const locid = req.params.locid; // get locid from the url
-  const location = USER_LOCATIONS.find((loc) => {
-    return loc.id === locid;
-  });
+  let location;
+  try{
+    location=await Location.findById(locid);
+  }catch(err){
+    return next(new MyError("Database error: Cannot find location on this id", 500));
+
+  }
+
+  // const location = USER_LOCATIONS.find((loc) => {
+  //   return loc.id === locid;
+  // });
   if (!location) {
     return next(new MyError("Cannot find location of this locid", 404));
   }
 
-  res.status(200).json({ result: "success", message: locations });
+  res.status(200).json({ result: "success", message: location });
 };
 
-exports.getLocationByUserId = (req, res, next) => {
+exports.getLocationByUserId = async (req, res, next) => {
   const uid = req.params.uid; //get uid from the url
-  const locations = USER_LOCATIONS.filter((loc) => {
-    return loc.userid === uid;
-  });
+  let locations;
+  try{
+    locations=await Location.find({userid:uid});
+  }catch(err){
+    return next(new MyError("Database error: Cannot find locations",500));
+  }
+  // const locations = USER_LOCATIONS.filter((loc) => {
+  //   return loc.userid === uid;
+  // });
   if (!locations) {
     return next(new MyError("Cannot find location for this userid", 404));
   }
   res.status(200).json({ result: "success", message: locations });
 };
 
-exports.createNewLocation = async (req, res, next) => {
+exports.createNewLocation = async(req, res, next) => {
   const { title, desc, address, userid } = req.body;
   const newlocation=new Location({
     title,
     desc,
-    pic :'https://picsum.photos/200',
+    pic :req.file.path,
     address,
-    userid
+    userid,
 
   });
   try{
 
     await newlocation.save();
+    
   }catch(err){
-    return next(new MyError("Database error: Cannot add location", 500))
+    return next(new MyError("Database error: Cannot add location: "+ err, 500));
   }
   // const newlocation = { title, desc, address, userid };
   // USER_LOCATIONS.push(newlocation);
@@ -73,10 +88,17 @@ exports.createNewLocation = async (req, res, next) => {
   res.status(201).json({ result: "success", message: newlocation });
 };
 
-exports.deleteLocation = (req, res, next) => {
-  const locid = req.params.locid; // get locid from the url
-  USER_LOCATIONS = USER_LOCATIONS.filter((loc) => {
-    loc.id !== locid;
-  });
+exports.deleteLocation = async(req, res, next) => {
+  const locid = req.params.locid; // get locid from the url 
+  let location;
+  try{
+  location =await Location.findByIdAndDelete(locid);
+  }catch(err){
+return next(new MyError("Database error: Cannot delete location",500));
+  }
+  // USER_LOCATIONS = USER_LOCATIONS.filter((loc) => {
+  //   loc.id !== locid;
+  // });
   res.status(200).json({ result: "success", message: "location deleted" });
 };
+

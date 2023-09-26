@@ -1,13 +1,14 @@
 const express = require("express");
-const mongoose=require('mongoose');
+const mongoose=require("mongoose");
+const cors = require("cors");
 const MyError = require("./model/error");
 const location_route = require("./routes/locations_route");
 const user_route = require("./routes/users_route");
 const app = express();
-
+app.use(cors());
 app.use(express.json()); //built in middle ware
-
-app.use("/api/locations", location_route); //location route middleware custom made
+app.use("/uploads/users",express.static(`${__dirname}\\uploads\\users`));
+app.use("/api/locations", location_route); //location route middleware custom  made
 app.use("/api/users", user_route); //user route middleware custom made
 
 

@@ -8,18 +8,18 @@ const UserList=(props)=>{
             <div className="center">
                 <h2>No users exists</h2>
             </div>
-        )
+        );
     }
  return (
     <ul className="userlist">
         {props.items.map((user)=>{
             return(
                <UserItem
-            key={user.id}
-            id={user.id}
-            name={user.name}
+            key={user._id}
+            id={user._id}
+            name={user.name} 
             pic={user.pic}
-            locationcount={user.numberoflocations}
+            locationcount={user.locationsid.length}
             />
             );
         })}

@@ -19,7 +19,7 @@ const UserItem=(props)=>{
                 </Link>
             </div>
         </li>
-    )
-}
+    );
+};
 
 export default UserItem;

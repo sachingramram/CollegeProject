@@ -15,16 +15,16 @@ const LocationList=(props)=>{
             {props.items.map((location)=>{
                 return(
                     <LocationItem
-                    key={location.id}
-                    id={location.id}
+                    key={location._id}
+                    id={location._id}
                     title={location.title}
                     pic={location.pic}
                     address={location.address}
                     desc={location.desc}
                     />
-                )
+                );
             })}
         </ul>
-    )
-}
+    );
+};
 export default LocationList;
